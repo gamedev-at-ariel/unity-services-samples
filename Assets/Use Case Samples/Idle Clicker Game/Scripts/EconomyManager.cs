@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace Unity.Services.Samples.IdleClickerGame
 {
+    /* A singleton class to manage the balance of the user */
     public class EconomyManager : MonoBehaviour
     {
         public CurrencyHudView currencyHudView;
 
-        public static EconomyManager instance { get; private set; }
+        public static EconomyManager instance { get; private set; }  // the singleton instance
 
         readonly Dictionary<string, long> m_CurrencyBalance = new Dictionary<string, long>();
 
@@ -19,7 +20,7 @@ namespace Unity.Services.Samples.IdleClickerGame
         {
             if (instance != null && instance != this)
             {
-                Destroy(this);
+                Destroy(this);   // singleton pattern
             }
             else
             {
@@ -104,7 +105,7 @@ namespace Unity.Services.Samples.IdleClickerGame
             return m_CurrencyBalance[currencyId];
         }
 
-        void OnDestroy()
+        void OnDestroy()  // singleton pattern
         {
             if (instance == this)
             {
